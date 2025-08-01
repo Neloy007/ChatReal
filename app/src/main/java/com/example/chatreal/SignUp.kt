@@ -92,17 +92,18 @@ class SignUp : AppCompatActivity() {
 
     private fun saveUserToFirestore(uid: String, name: String, email: String, profileImageUrl: String) {
         val userMap = mapOf(
+            "id" to uid,  // Use UID as document id and also save in field "id"
             "name" to name,
             "email" to email,
             "profileImageUrl" to profileImageUrl
         )
 
         firestore.collection("users")
-            .document(uid)
+            .document(uid) // Document ID = User UID
             .set(userMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_SHORT).show()
-                // Navigate to MainActivity
+                // Navigate to MainActivity after successful signup
                 val intent = Intent(this, MainActivity::class.java).apply {
                     putExtra("name", name)
                     putExtra("email", email)

@@ -1,6 +1,6 @@
 [versions]
 agp = "8.12.0"
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -42,8 +42,9 @@ firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging
 
 [plugins]
 android-application = { id = "com.android.application", version = "8.12.0" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.21" }
-ksp = { id = "com.google.devtools.ksp", version = "1.9.21-1.0.15" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.1.0" }
+ksp = { id = "com.google.devtools.ksp", version = "2.1.0-1.0.20" } # optional, update if you're using KSP
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 google-firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.ref = "googleFirebaseAppdistribution" }
+
 

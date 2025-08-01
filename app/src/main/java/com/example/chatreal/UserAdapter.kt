@@ -11,7 +11,25 @@ class UserAdapter(
     private val onUserClick: (User) -> Unit
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    inner class UserViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class UserViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: User) {
+            binding.nameTextView.text = user.name
+            binding.emailTextView.text = user.email
+
+            if (user.profileImageUrl.isNotEmpty()) {
+                Glide.with(binding.root.context)
+                    .load(user.profileImageUrl)
+                    .placeholder(R.drawable.profileplus)
+                    .into(binding.profileImage)
+            } else {
+                binding.profileImage.setImageResource(R.drawable.profileplus)
+            }
+
+            binding.root.setOnClickListener {
+                onUserClick(user)
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,23 +37,7 @@ class UserAdapter(
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = users[position]
-        holder.binding.nameTextView.text = user.name
-        holder.binding.emailTextView.text = user.email
-
-        // Load image from Firebase Storage URL using Glide
-        if (user.profileImageUrl.isNotEmpty()) {
-            Glide.with(holder.binding.profileImage.context)
-                .load(user.profileImageUrl)
-                .placeholder(R.drawable.profileplus)
-                .into(holder.binding.profileImage)
-        } else {
-            holder.binding.profileImage.setImageResource(R.drawable.profileplus)
-        }
-
-        holder.binding.root.setOnClickListener {
-            onUserClick(user)
-        }
+        holder.bind(users[position])
     }
 
     override fun getItemCount(): Int = users.size
