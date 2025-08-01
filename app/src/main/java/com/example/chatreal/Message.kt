@@ -1,6 +1,8 @@
 package com.example.chatreal
 
 data class Message(
-    val text: String,
-    val isSentByMe: Boolean
+    val senderId: String = "",
+    val text: String = "",
+    val timestamp: Long = System.currentTimeMillis(),
+    var isSentByMe: Boolean = false  // Will be set dynamically
 )
