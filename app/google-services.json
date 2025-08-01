@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "537767257628",
+    "project_id": "chatreal-f63fe",
+    "storage_bucket": "chatreal-f63fe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537767257628:android:a4cc6b3cf3164cf212a1d9",
+        "android_client_info": {
+          "package_name": "com.example.chatreal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-qRroIv1dG5h9_AzsiqZyKGYcB1XRvlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
