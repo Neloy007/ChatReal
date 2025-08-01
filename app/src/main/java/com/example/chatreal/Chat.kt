@@ -1,6 +1,7 @@
 package com.example.chatreal
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,25 +20,20 @@ class Chat : AppCompatActivity() {
 
         val userName = intent.getStringExtra("userName") ?: "Unknown"
         val userEmail = intent.getStringExtra("userEmail") ?: "No Email"
-        val userImageRes = intent.getIntExtra("userImageResId", R.drawable.profileplus)
+        val userImageUriString = intent.getStringExtra("userImageUri")
+        val userImageUri = if (!userImageUriString.isNullOrEmpty()) Uri.parse(userImageUriString) else null
 
         binding.chatUserName.text = userName
-        binding.chatUserImage.setImageResource(userImageRes)
-
-        binding.chatUserImage.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java).apply {
-                putExtra("userName", userName)
-                putExtra("userEmail", userEmail)
-                putExtra("userImageResId", userImageRes)
-            }
-            startActivity(intent)
+        if (userImageUri != null) {
+            binding.chatUserImage.setImageURI(userImageUri)
+        } else {
+            binding.chatUserImage.setImageResource(R.drawable.profileplus)
         }
 
 
         chatAdapter = ChatAdapter(messages)
         binding.chatRecyclerView.adapter = chatAdapter
         binding.chatRecyclerView.layoutManager = LinearLayoutManager(this)
-
 
         binding.sendButton.setOnClickListener {
             val messageText = binding.messageEditText.text.toString().trim()

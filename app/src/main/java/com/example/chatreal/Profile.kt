@@ -1,10 +1,13 @@
 package com.example.chatreal
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.chatreal.databinding.ActivityProfileBinding
 
-class ProfileActivity : AppCompatActivity() {
+class Profile : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

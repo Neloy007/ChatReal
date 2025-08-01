@@ -1,6 +1,7 @@
 package com.example.chatreal
 
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,12 +23,18 @@ class UserAdapter(
         val user = users[position]
         holder.binding.nameTextView.text = user.name
         holder.binding.emailTextView.text = user.email
-        holder.binding.profileImage.setImageResource(user.imageResId)
+
+        if (!user.profileImageUri.isNullOrEmpty()) {
+            holder.binding.profileImage.setImageURI(Uri.parse(user.profileImageUri))
+        } else {
+            holder.binding.profileImage.setImageResource(R.drawable.profileplus) // fallback image
+        }
 
         holder.binding.root.setOnClickListener {
             onUserClick(user)
         }
     }
+
 
     override fun getItemCount(): Int = users.size
 }
