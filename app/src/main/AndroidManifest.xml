@@ -19,7 +19,7 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".Chat"
+            android:name=".ChatActivity"
             android:exported="false" />
         <activity
             android:name=".SignUp"
